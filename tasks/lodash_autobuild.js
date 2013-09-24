@@ -17,8 +17,12 @@ module.exports = function(grunt) {
     var shelljs = require('shelljs');
     var _ = require('lodash');
     var fns = [], fnsStr = '';
+    var filesIn = this.data
 
-    this.data.forEach(function(f) {
+    if(_.isString(filesIn))
+      filesIn = [filesIn] 
+
+    filesIn.forEach(function(f) {
       var files = grunt.file.expand(f);
       var matchlines = shelljs.grep('_\.\w*', files);
       var matches = matchlines.match(/_\.\w*/gi);
