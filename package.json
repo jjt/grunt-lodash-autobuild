@@ -1,0 +1,46 @@
+{
+  "name": "grunt-lodash-autobuild",
+  "description": "Analyzes your source js/cs/html/etc. and custom builds a minimal version of lodash",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jjt/grunt-lodash-autobuild",
+  "author": {
+    "name": "jjt",
+    "email": "jason@jasontrill.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jjt/grunt-lodash-autobuild.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jjt/grunt-lodash-autobuild/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jjt/grunt-lodash-autobuild/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "shelljs": "~0.2.6",
+    "lodash": "~2.1.0"
+  }
+}
