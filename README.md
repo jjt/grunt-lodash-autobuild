@@ -48,8 +48,8 @@ grunt.loadNpmTasks('grunt-lodash-autobuild');
         }
       });
       
-      grunt.loadNpmTasks('grunt-lodash-autobuild');
       grunt.loadNpmTasks('grunt-lodash');
+      grunt.loadNpmTasks('grunt-lodash-autobuild');
       
       grunt.registerTask('default', ['lodashAutobuild']);
     }
