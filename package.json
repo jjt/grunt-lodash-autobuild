@@ -1,6 +1,6 @@
 {
   "name": "grunt-lodash-autobuild",
-  "description": "Analyzes your source js/cs/html/etc. and custom builds a minimal version of lodash",
+  "description": "Minimal lodash build from analyzing source files",
   "version": "0.2.0",
   "homepage": "https://github.com/jjt/grunt-lodash-autobuild",
   "author": {
