@@ -44,6 +44,8 @@ grunt.loadNpmTasks('grunt-lodash-autobuild');
           options: {
             // Set to the configured lodash task options.include
             lodashConfigPath: 'lodash.build.options.include'
+            // The name of the lodash object(s) (default: '_')
+            lodashObjects: [ '_', 'lodash', 'underscore' ]
           }
         }
       });
