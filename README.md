@@ -29,7 +29,16 @@ grunt.loadNpmTasks('grunt-lodash');
 grunt.loadNpmTasks('grunt-lodash-autobuild');
 ```
 
-###Example Gruntfile.js:
+
+## Note: Lodash Version
+
+The `grunt-lodash-autobuild` package.json calls for `>=2.0.0` for both `lodash`
+and `lodash-cli`. This means that you'll likely be building from the most recent
+stable version of lodash. I don't see this as a problem, since the library is
+fairly stable and ideally one would be keeping up with updates, but you'd
+probably be able to muck about to get a different version.
+
+##Example Gruntfile.js:
 
     module.exports = function(grunt) {
       grunt.initConfig({
@@ -39,7 +48,8 @@ grunt.loadNpmTasks('grunt-lodash-autobuild');
             dest: 'build/lodash.build.js',
             options: {
               exports: ['none']
-              // include: "... lodash-autobuild will fill this in... " 
+              // lodash-autobuild will add this after analysis of source code
+              // include: "names, of, lodash, methods, in, your, source" 
             }
           }
         },

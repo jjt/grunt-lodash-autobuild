@@ -41,8 +41,8 @@
   ],
   "dependencies": {
     "shelljs": "~0.2.6",
-    "lodash": "~2.1.0",
-    "lodash-cli": "~2.1.0",
-    "grunt-lodash": "~0.3.0"
+    "lodash": ">=2.0.0",
+    "lodash-cli": ">=2.0.0",
+    "grunt-lodash": ">=0.3.0"
   }
 }
