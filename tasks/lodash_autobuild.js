@@ -13,12 +13,15 @@ module.exports = function(grunt) {
 
     var options = this.options({
       lodashConfigPath: 'lodash.build.options.include',
-      lodashObjects: [ '_' ]
+      lodashObjects: [ '_' ],
+      // Empty targets array will run all lodash targets
+      // Specify targets by name to run specific targets
+      lodashTargets: []
     });
 
     var shelljs = require('shelljs'),
         _ = require('lodash'),
-        filesIn = this.data,
+        // filesIn = this.data,
         props = [],
         propsValid = [],
         propsInvalid = [],
@@ -27,20 +30,19 @@ module.exports = function(grunt) {
         lodashObjectsStr = '(' + options.lodashObjects.join('|') + ')',
         lodashObjectsPattern = lodashObjectsStr + '\\.',
         lodashUsagePattern = lodashObjectsPattern + '\\w*';
-   
-    if(_.isString(filesIn))
-      filesIn = [filesIn] 
 
-    filesIn.forEach(function(f) {
-      var files = grunt.file.expand(f),
+    this.files.forEach(function(f) {
+      var files = grunt.file.expand(f.src),
           matchlines = shelljs.grep(lodashUsagePattern, files),
           matches = matchlines.match(new RegExp(lodashUsagePattern, 'gi'));
 
-      if(!_.isArray(matches))
+      if(!_.isArray(matches)) {
         return;
+      }
 
-      for(var i=0; i < matches.length; i++)
+      for(var i=0; i < matches.length; i++) {
         matches[i] = matches[i].split('.').slice(-1)[0];
+      }
 
       props = props.concat(matches);
     });
@@ -50,16 +52,26 @@ module.exports = function(grunt) {
     // Remove invalid property names
     propsInvalid = _.difference(props, _.keys(_)); 
     propsValid = _.intersection(props, _.keys(_));
-    propsValidStr = propsValid.join(', ')
-    propsInvalidStr = propsInvalid.join(', ')
+    propsValidStr = propsValid.join(', ');
+    propsInvalidStr = propsInvalid.join(', ');
 
     grunt.log.oklns("Found the following lodash v" + _.VERSION + " methods/properties:\n" +
       grunt.log.wordlist(propsValid, {color: 'green'}) + "\n");
-    if(propsInvalidStr)
+    if(propsInvalidStr) {
       grunt.log.errorlns("Also found these invalid methods/properties, skipping:\n" +
         grunt.log.wordlist(propsInvalid, {color: 'red'}) + "\n");
+    }
     grunt.config.set(options.lodashConfigPath, propsValidStr);
-    grunt.task.run('lodash')
+    if (options.lodashTargets && options.lodashTargets.length) {
+      // Run all specified lodash targets
+      options.lodashTargets.forEach(function(target) {
+        grunt.task.run('lodash:'+target);
+      });
+    }
+    else {
+      // If no targets specified, run all lodash targets
+      grunt.task.run('lodash');
+    }
   });
 
 };

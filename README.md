@@ -54,14 +54,21 @@ probably be able to muck about to get a different version.
           }
         },
         lodashAutobuild: {
-          // The path to your source file(s)
-          src: ['src/js/**/*.js', 'src/coffee/**/*.coffee'],
-          // Default options:
-          options: {
-            // Set to the configured lodash task options.include
-            lodashConfigPath: 'lodash.build.options.include'
-            // The name(s) of the lodash object(s)
-            lodashObjects: [ '_' ]
+          // Multiple autobuild targets supported
+          app: {
+            // The path to your source file(s)
+            src: ['src/js/**/*.js', 'src/coffee/**/*.coffee'],
+            // Default options:
+            options: {
+              // Set to the configured lodash task options.include
+              lodashConfigPath: 'lodash.build.options.include'
+              // The name(s) of the lodash object(s)
+              lodashObjects: [ '_' ],
+              // Undefined lodashTargets or an empty targets
+              // array will run all lodash targets. Specify
+              // targets by name to run specific targets
+              lodashTargets: [ 'build' ]
+            }            
           }
         }
       });
