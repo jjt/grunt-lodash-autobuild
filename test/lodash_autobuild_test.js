@@ -30,19 +30,13 @@ exports.lodash_autobuild = {
   default_options: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    // Test for the include="fn, fn, ..." string in the outputted file
+    var re = /include=".*"/,
+        matches = grunt.file.read('tmp/build.js').match(re),
+        actual = (matches != null) ? matches[0].trim() : '',
+        expected = grunt.file.read('test/expected/default_options').trim();
 
+    test.equal(actual, expected, 'lodash cli include modules match those expected');
     test.done();
-  },
-  custom_options: function(test) {
-    test.expect(1);
-
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
-
-    test.done();
-  },
+  }
 };
