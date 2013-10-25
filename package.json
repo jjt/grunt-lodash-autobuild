@@ -1,7 +1,7 @@
 {
   "name": "grunt-lodash-autobuild",
   "description": "Minimal lodash build from analyzing source files",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "homepage": "https://github.com/jjt/grunt-lodash-autobuild",
   "author": {
     "name": "jjt",
