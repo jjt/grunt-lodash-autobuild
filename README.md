@@ -40,41 +40,43 @@ probably be able to muck about to get a different version.
 
 ##Example Gruntfile.js:
 
-    module.exports = function(grunt) {
-      grunt.initConfig({
-        // grunt-lodash configuration
-        lodash: {
-          build: {
-            dest: 'build/lodash.build.js',
-            options: {
-              exports: ['none']
-              // lodash-autobuild will add this after analysis of source code
-              // include: "names, of, lodash, methods, in, your, source" 
-            }
-          }
-        },
-        lodashAutobuild: {
-          // Multiple autobuild targets supported
-          app: {
-            // The path to your source file(s)
-            src: ['src/js/**/*.js', 'src/coffee/**/*.coffee'],
-            // Default options:
-            options: {
-              // Set to the configured lodash task options.include
-              lodashConfigPath: 'lodash.build.options.include'
-              // The name(s) of the lodash object(s)
-              lodashObjects: [ '_' ],
-              // Undefined lodashTargets or an empty targets
-              // array will run all lodash targets. Specify
-              // targets by name to run specific targets
-              lodashTargets: [ 'build' ]
-            }            
-          }
+```js
+module.exports = function(grunt) {
+  grunt.initConfig({
+    // grunt-lodash configuration
+    lodash: {
+      build: {
+        dest: 'build/lodash.build.js',
+        options: {
+          exports: ['none']
+          // lodash-autobuild will add this after analysis of source code
+          // include: "names, of, lodash, methods, in, your, source" 
         }
-      });
-      
-      grunt.loadNpmTasks('grunt-lodash');
-      grunt.loadNpmTasks('grunt-lodash-autobuild');
-      
-      grunt.registerTask('default', ['lodashAutobuild']);
+      }
+    },
+    lodashAutobuild: {
+      // Multiple autobuild targets supported
+      app: {
+        // The path to your source file(s)
+        src: ['src/js/**/*.js', 'src/coffee/**/*.coffee'],
+        // Default options:
+        options: {
+          // Set to the configured lodash task options.include
+          lodashConfigPath: 'lodash.build.options.include'
+          // The name(s) of the lodash object(s)
+          lodashObjects: [ '_' ],
+          // Undefined lodashTargets or an empty targets
+          // array will run all lodash targets. Specify
+          // targets by name to run specific targets
+          lodashTargets: [ 'build' ]
+        }            
+      }
     }
+  });
+  
+  grunt.loadNpmTasks('grunt-lodash');
+  grunt.loadNpmTasks('grunt-lodash-autobuild');
+  
+  grunt.registerTask('default', ['lodashAutobuild']);
+}
+```
